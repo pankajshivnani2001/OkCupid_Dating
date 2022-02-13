@@ -494,7 +494,7 @@ def app():
     col3.plotly_chart(body_type_vs_relationship_status(df, "thin"), use_container_width=True)
 
     st.header("Visualize the Essays")
-    essays_df = pd.read_csv("processed-essays.csv")
+    essays_df = pd.read_csv("https://media.githubusercontent.com/media/pankajshivnani2001/OkCupid_Dating/master/processed-essays.csv")
     for essay in essays_df.columns:
         essays_df[essay] = essays_df[essay].apply(lambda row : str(row))
         essays_df[essay] = essays_df[essay].apply(lambda row : row.replace("nan", ""))
