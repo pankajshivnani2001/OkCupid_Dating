@@ -433,9 +433,16 @@ def body_type_vs_relationship_status(df, body):
 
 def app():
     st.header("Love is in the Air!")
-    url = 'https://drive.google.com/file/d/1pf3MY1jSqkVKw0yiIQT-qassOdOxA0lE/view?usp=sharing'
-    url='https://drive.google.com/uc?id=' + url.split('/')[-2]
-    df = pd.read_csv(url);
+    li = []
+
+    for filename in ["profiles - profiles.csv", "profiles1 - profiles1.csv", "profiles2 - profiles2.csv", "profiles3 - profiles3.csv", "profiles4 - profiles4.csv", "profiles5 - profiles5.csv", "profiles6 - profiles6.csv", "profiles7 - profiles7.csv"]:
+        df = pd.read_csv(filename, index_col=None, header=None)
+        li.append(df)
+
+    df = pd.concat(li, axis=0, ignore_index=True)
+    new_header = df.iloc[0] #grab the first row for the header
+    df = df[1:] #take the data less the header row
+    df.columns = new_header #set the header row as the df header
     st.subheader("OkCupid Dataset")
     st.write(df.head(10))
 
@@ -496,7 +503,8 @@ def app():
     col3.plotly_chart(body_type_vs_relationship_status(df, "thin"), use_container_width=True)
 
     st.header("Visualize the Essays")
-    essays_df = pd.read_csv("https://media.githubusercontent.com/media/pankajshivnani2001/OkCupid_Dating/master/processed-essays.csv")
+    essays_df = df[["essay0", "essay1", "essay2", "essay3", "essay4", "essay5", "essay6", "essay7", "essay8", "essay9"]]
+    preprocess(essays_df)
     for essay in essays_df.columns:
         essays_df[essay] = essays_df[essay].apply(lambda row : str(row))
         essays_df[essay] = essays_df[essay].apply(lambda row : row.replace("nan", ""))
