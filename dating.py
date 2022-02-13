@@ -433,16 +433,18 @@ def body_type_vs_relationship_status(df, body):
 
 def app():
     st.header("Love is in the Air!")
-    li = []
+    #li = []
 
-    for filename in ["profiles - profiles.csv", "profiles1 - profiles1.csv", "profiles2 - profiles2.csv", "profiles3 - profiles3.csv", "profiles4 - profiles4.csv", "profiles5 - profiles5.csv", "profiles6 - profiles6.csv", "profiles7 - profiles7.csv"]:
-        df = pd.read_csv(filename, index_col=None, header=None)
-        li.append(df)
+    #for filename in ["profiles - profiles.csv", "profiles1 - profiles1.csv", "profiles2 - profiles2.csv", "profiles3 - profiles3.csv", "profiles4 - profiles4.csv", "profiles5 - profiles5.csv", "profiles6 - profiles6.csv", "profiles7 - profiles7.csv"]:
+    #    df = pd.read_csv(filename, index_col=None, header=None)
+     #   li.append(df)
 
-    df = pd.concat(li, axis=0, ignore_index=True)
-    new_header = df.iloc[0] #grab the first row for the header
-    df = df[1:] #take the data less the header row
-    df.columns = new_header #set the header row as the df header
+    #df = pd.concat(li, axis=0, ignore_index=True)
+    #new_header = df.iloc[0] #grab the first row for the header
+    #df = df[1:] #take the data less the header row
+    #df.columns = new_header #set the header row as the df header
+    
+    df = pd.read_csv("profiles.zip")
     st.subheader("OkCupid Dataset")
     st.write(df.head(10))
 
