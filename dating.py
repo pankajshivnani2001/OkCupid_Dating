@@ -433,7 +433,9 @@ def body_type_vs_relationship_status(df, body):
 
 def app():
     st.header("Love is in the Air!")
-    df = pd.read_csv('https://media.githubusercontent.com/media/pankajshivnani2001/OkCupid_Dating/master/profiles.csv');
+    url = 'https://drive.google.com/file/d/1pf3MY1jSqkVKw0yiIQT-qassOdOxA0lE/view?usp=drivesdk'
+    url='https://drive.google.com/uc?id=' + url.split('/')[-2]
+    df = pd.read_csv(url);
     st.subheader("OkCupid Dataset")
     st.write(df.head(10))
 
