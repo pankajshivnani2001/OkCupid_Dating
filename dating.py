@@ -444,10 +444,7 @@ def app():
     #df = df[1:] #take the data less the header row
     #df.columns = new_header #set the header row as the df header
     
-    with zipfile.ZipFile("profiles.zip") as z:
-        with z.open("profiles.csv") as f:
-            df = pd.read_csv(f, header=0, delimiter=",")
-            st.write(df.head())
+    df = pd.read_csv('profiles.zip', compression='gzip', header=0, sep=',', quotechar='"')
     st.subheader("OkCupid Dataset")
     st.write(df.head(10))
 
