@@ -445,7 +445,7 @@ def app():
     #df.columns = new_header #set the header row as the df header
     
     df = pd.read_csv('profiles.zip', compression='zip', header=0, sep=',', quotechar='"')
-    df = pd.DataFrane(df)
+    df = pd.DataFrame(df)
     st.subheader("OkCupid Dataset")
     st.write(df.head(10))
 
