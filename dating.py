@@ -446,7 +446,7 @@ def app():
     
     with zipfile.ZipFile("profiles.zip") as z:
         with z.open("profiles.csv") as f:
-            df = pd.read_csv(f, header=0, delimiter="\t")
+            df = pd.read_csv(f, header=0, delimiter=",")
             st.write(df.head())
     st.subheader("OkCupid Dataset")
     st.write(df.head(10))
