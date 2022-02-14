@@ -12,7 +12,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 import streamlit as st
 from plotly.offline import iplot
 from plotly.subplots import make_subplots
-
+import zipfile
 
 
 def plot_pie_chart_for_value_counts(column):
@@ -444,7 +444,10 @@ def app():
     #df = df[1:] #take the data less the header row
     #df.columns = new_header #set the header row as the df header
     
-    df = pd.read_csv('profiles.zip', compression='zip', header=0, sep=',', quotechar='"')
+    with zipfile.ZipFile("profiles.zip") as z:
+        with z.open("profiles.csv") as f:
+            df = pd.read_csv(f, header=0, delimiter="\t")
+            st.write(df.head())
     st.subheader("OkCupid Dataset")
     st.write(df.head(10))
 
