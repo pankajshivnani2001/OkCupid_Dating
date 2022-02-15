@@ -526,14 +526,14 @@ def app():
          "essay9 - You should message me if…"))
 
     st.subheader("Word Cloud")
-    st.pyplot(createCloud(essays_df[essay], essay))
+    st.pyplot(createCloud(essays_df[essay[:6]], essay))
 
 
     st.header("Bigrams")
-    st.plotly_chart(plot_word_freq_chart(top_n_words(essays_df[essay], 2, 10)), use_container_width = True)
+    st.plotly_chart(plot_word_freq_chart(top_n_words(essays_df[essay[:6]], 2, 10)), use_container_width = True)
 
     st.header("Trigrams")
-    st.plotly_chart(plot_word_freq_chart(top_n_words(essays_df[essay], 3, 10)), use_container_width = True)
+    st.plotly_chart(plot_word_freq_chart(top_n_words(essays_df[essay[:6]], 3, 10)), use_container_width = True)
 
 
 app()
