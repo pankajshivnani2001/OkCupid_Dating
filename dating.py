@@ -262,7 +262,7 @@ def lemmatize(row):
 
 
 def remove_html(row):
-    regex = re.compile('<.*?>')
+    regex = re.compile(r'<[^>]+>')
     return regex.sub('', str(row))
 
 
