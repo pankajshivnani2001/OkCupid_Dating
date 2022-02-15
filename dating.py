@@ -3,6 +3,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from wordcloud import STOPWORDS
 import nltk
+nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 import re
@@ -448,7 +449,7 @@ def app():
 
     st.header("Understanding the Dataset")
     df['income'] = df['income'].apply(lambda row : float(row))
-
+    df['age'] = df['age'].apply(lambda row : float(row))
     st.subheader("Age Distribution")
     st.plotly_chart(plot_histogram_for_value_counts(df, "age", "lightblue"))
 
