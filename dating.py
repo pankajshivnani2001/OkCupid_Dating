@@ -519,7 +519,11 @@ def app():
 
     essay = st.selectbox(
         "Choose the essay:",
-        ("essay0", "essay1", "essay2", "essay3", "essay4", "essay5", "essay6", "essay7", "essay8", "essay9"))
+        ("essay0 - My self summary", "essay1 - What I’m doing with my life", "essay2 - I’m really good at", 
+         "essay3 - The first thing people usually notice about me", "essay4 - Favorite books, movies, show, music, and food", 
+         "essay5 - The six things I could never do without", "essay6 - I spend a lot of time thinking about", 
+         "essay7 - On a typical Friday night I am", "essay8 - The most private thing I am willing to admit", 
+         "essay9 - You should message me if…"))
 
     st.subheader("Word Cloud")
     st.pyplot(createCloud(essays_df[essay], essay))
