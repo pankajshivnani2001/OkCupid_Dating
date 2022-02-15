@@ -447,6 +447,7 @@ def app():
     st.write(df.head(10))
 
     st.header("Understanding the Dataset")
+    df['income'] = df['income'].apply(lambda row : float(row))
 
     st.subheader("Age Distribution")
     st.plotly_chart(plot_histogram_for_value_counts(df, "age", "lightblue"))
