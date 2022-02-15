@@ -4,6 +4,7 @@ import plotly.express as px
 from wordcloud import STOPWORDS
 import nltk
 nltk.download('wordnet')
+nltk.download('omw-1.4')
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 import re
