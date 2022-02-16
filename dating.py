@@ -507,7 +507,19 @@ def app():
 
     st.header("Visualize the Essays")
     essays_df = df[["essay0", "essay1", "essay2", "essay3", "essay4", "essay5", "essay6", "essay7", "essay8", "essay9"]]
-    preprocess(essays_df)
+    #preprocess(essays_df)
+    
+    li = []
+
+    for filename in ["processed profiles - profiles.csv", "processed profiles1 - profiles1.csv", "processed profiles2 - profiles2.csv", "processed profiles3 - profiles3.csv", "processed profiles4 - profiles4.csv", "processed profiles5 - profiles5.csv", "processed profiles6 - profiles6.csv", "processed profiles7 - profiles7.csv"]:
+        df = pd.read_csv(filename, index_col=None, header=None)
+        li.append(df)
+
+    df = pd.concat(li, axis=0, ignore_index=True)
+    new_header = df.iloc[0] #grab the first row for the header
+    df = df[1:] #take the data less the header row
+    df.columns = new_header #set the header row as the df header
+    df = df[["essay0","essay1","essay2","essay3","essay4","essay5","essay6","essay7","essay8","essay9"]]
     for essay in essays_df.columns:
         essays_df[essay] = essays_df[essay].apply(lambda row : str(row))
         essays_df[essay] = essays_df[essay].apply(lambda row : row.replace("nan", ""))
