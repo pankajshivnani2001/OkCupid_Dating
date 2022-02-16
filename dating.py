@@ -506,7 +506,7 @@ def app():
     col3.plotly_chart(body_type_vs_relationship_status(df, "thin"), use_container_width=True)
 
     st.header("Visualize the Essays")
-    essays_df = df[["essay0", "essay1", "essay2", "essay3", "essay4", "essay5", "essay6", "essay7", "essay8", "essay9"]]
+    essays_df = pd.read_csv("processed-essays.csv")
     #preprocess(essays_df)
     
     li = []
