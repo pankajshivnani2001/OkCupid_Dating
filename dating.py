@@ -428,8 +428,23 @@ def body_type_vs_relationship_status(df, body):
     singles = df[df["body_type"]==body]["status"].value_counts()["single"]
     total = df[df["body_type"]==body]["status"].value_counts().sum()
     fig = go.Figure(data=[go.Pie(labels=labels, values=[singles, total-singles], hole=.6)])
-    fig.update_layout(title_text="Body Type: "+body,
+    fig.update_layout(margin=dict(t=0, b=0, l=0, r=0),
                       annotations=[dict(text=body, x=0.5, y=0.5, font_size=11, showarrow=False)])
+    fig.update_traces(hoverinfo='label + percent + value', textinfo = "none")
+    return fig
+
+
+def body_type_vs_gender(df, body):
+    labels = ["Male", "Female"]
+
+    males = df[df["body_type"]==body]["sex"].value_counts()["m"]
+    females = df[df["body_type"]==body]["sex"].value_counts()["f"]
+
+    fig = go.Figure(data=[go.Pie(labels=labels, values=[males, females], hole=.6)])
+    fig.update_layout(margin=dict(t=0, b=0, l=0, r=0),
+                      annotations=[dict(text=body, x=0.5, y=0.5, font_size=11, showarrow=False)])
+    fig.update_traces(hoverinfo='label + percent + value', textinfo='none', marker=dict(colors=["darkblue", "cyan"]))
+
     return fig
 
 
@@ -504,6 +519,23 @@ def app():
     col2.plotly_chart(body_type_vs_relationship_status(df, "skinny"), use_container_width=True)
     # col3.subheader("A Little Extra")
     col3.plotly_chart(body_type_vs_relationship_status(df, "thin"), use_container_width=True)
+    
+    
+    st.subheader("Body Type vs Gender")
+    col1, col2, col3 = st.columns(3)
+    # col1.subheader("Fit")
+    col1.plotly_chart(body_type_vs_gender(df, "fit"), use_container_width=True)
+    # col2.subheader("Average")
+    col2.plotly_chart(body_type_vs_gender(df, "jacked"), use_container_width=True)
+    # col3.subheader("A Little Extra")
+    col3.plotly_chart(body_type_vs_gender(df, "curvy"), use_container_width=True)
+    col1, col2, col3 = st.columns(3)
+    # col1.subheader("Fit")
+    col1.plotly_chart(body_type_vs_gender(df, "average"), use_container_width=True)
+    # col2.subheader("Average")
+    col2.plotly_chart(body_type_vs_gender(df, "skinny"), use_container_width=True)
+    # col3.subheader("A Little Extra")
+    col3.plotly_chart(body_type_vs_gender(df, "thin"), use_container_width=True)
 
     st.header("Visualize the Essays")
     essays_df = pd.read_csv("processed-essays.csv")
