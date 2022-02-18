@@ -429,7 +429,7 @@ def body_type_vs_relationship_status(df, body):
     total = df[df["body_type"]==body]["status"].value_counts().sum()
     fig = go.Figure(data=[go.Pie(labels=labels, values=[singles, total-singles], hole=.6)])
     fig.update_layout(margin=dict(t=0, b=0, l=0, r=0),
-                      annotations=[dict(text=body, x=0.5, y=0.5, font_size=11, showarrow=False)])
+                      annotations=[dict(text=body, x=0.5, y=0.5, font_size=13, showarrow=False)])
     fig.update_traces(hoverinfo='label + percent + value', textinfo = "none")
     return fig
 
@@ -442,7 +442,7 @@ def body_type_vs_gender(df, body):
 
     fig = go.Figure(data=[go.Pie(labels=labels, values=[males, females], hole=.6)])
     fig.update_layout(margin=dict(t=0, b=0, l=0, r=0),
-                      annotations=[dict(text=body, x=0.5, y=0.5, font_size=11, showarrow=False)])
+                      annotations=[dict(text=body, x=0.5, y=0.5, font_size=13, showarrow=False)])
     fig.update_traces(hoverinfo='label + percent + value', textinfo='none', marker=dict(colors=["darkblue", "cyan"]))
 
     return fig
