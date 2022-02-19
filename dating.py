@@ -568,5 +568,3 @@ def app():
     st.header("Trigrams")
     st.plotly_chart(plot_word_freq_chart(top_n_words(essays_df[essay[:6]], 3, 10)), use_container_width = True)
 
-
-app()
