@@ -8,7 +8,7 @@ pages = {
 
 option = st.sidebar.selectbox(
     "What would you like to open?",
-    ("Understanding the Dataset")
+    ("Understanding the Dataset", "A")
 )
 
 
