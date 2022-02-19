@@ -18,5 +18,5 @@ def app():
     tf_idf = tf_idf_vec.fit_transform(X_train)
     st.write("Some Features(aka words) and their Tf-Idf score:")
     st.write(tf_idf_vec.get_feature_names_out()[:20])
-    st.write(tf_idf_vec.get_feature_names_out()[:-20])
+    st.write(tf_idf_vec.get_feature_names_out()[-20:])
     st.write(tf_idf_vec.get_feature_names_out()[7000:7020])
