@@ -1,14 +1,15 @@
 import streamlit as st
-import dating
+import dating, classifiers
 
 
 pages = {
-            "Understanding the Dataset" : dating
+            "Understanding the Dataset" : dating,
+            "Predicting Gender using Self Summary Essay" : classifiers
         }
 
 option = st.sidebar.selectbox(
     "What would you like to open?",
-    ("Understanding the Dataset", "A")
+    ("Understanding the Dataset", "Predicting Gender using Self Summary Essay")
 )
 
 
