@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
-#from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import MultinomialNB
 
 def app():
     df = pd.read_csv("nb.csv")
