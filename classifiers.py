@@ -36,14 +36,14 @@ def app():
     recall = recall_score(y_test, predictions, average='weighted')
 
     st.subheader("Naive Bayes Performance")
-    st.write("accuracy:\t", accuracy)
-    st.write("precision:\t", precision)
-    st.write("recall:\t\t", recall)
+    st.write("accuracy:", accuracy)
+    st.write("precision:", precision)
+    st.write("recall:", recall)
 
     rf_clf = RandomForestClassifier(n_estimators = 100)
     rf_clf.fit(tf_idf, y_train)
     predictions = rf_clf.predict(tf_idf_vec.transform(X_test))
-    t.write(pd.DataFrame({"Essay": X_test, "Predictions":predictions, "Original":y_test}).head(20))
+    st.write(pd.DataFrame({"Essay": X_test, "Predictions":predictions, "Original":y_test}).head(20))
     
     st.subheader("Performance")
 
