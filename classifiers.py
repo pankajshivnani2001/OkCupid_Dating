@@ -17,14 +17,14 @@ def app():
 
     tf_idf_vec = TfidfVectorizer()
     tf_idf = tf_idf_vec.fit_transform(X_train)
-    st.subheader("Some Features(aka Words) and their Tf-Idf score:")
-    st.write(pd.DataFrame(tf_idf.toarray(),columns=tf_idf_vec.get_feature_names()).head(15))
+    st.subheader("Some Features(aka Words) in Tf-Idf Matrix")
+    st.write(tf_idf_vec.get_feature_names())[1000:1100])
     nb_clf = MultinomialNB()
     nb_clf.fit(tf_idf, y_train)
 
     st.subheader("Naive Bayes Predictions vs Original Gender")
     predictions = nb_clf.predict(tf_idf_vec.transform(X_test))
-    #st.write(pd.DataFrame({"Predictions":predictions, "Original":y_test}))
+    st.write(pd.DataFrame({"Predictions":predictions, "Original":y_test}).head(20))
     
     #st.subheader("Performance")
     #bar chart for accuracy precision recall
