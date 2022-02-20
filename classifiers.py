@@ -18,7 +18,7 @@ def app():
     tf_idf_vec = TfidfVectorizer()
     tf_idf = tf_idf_vec.fit_transform(X_train)
     st.subheader("Some Features(aka Words) in Tf-Idf Matrix")
-    st.write(tf_idf_vec.get_feature_names())[1000:1100]
+    st.write(tf_idf_vec.get_feature_names()[1000:1100])
     nb_clf = MultinomialNB()
     nb_clf.fit(tf_idf, y_train)
 
