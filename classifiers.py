@@ -24,7 +24,7 @@ def app():
 
     st.subheader("Naive Bayes Predictions vs Original Gender")
     predictions = nb_clf.predict(tf_idf_vec.transform(X_test))
-    st.write(pd.DataFrame({"Essay": X_test["My Self Summary"], "Predictions":predictions, "Original":y_test}).head(20))
+    st.write(pd.DataFrame({"Essay": X_test, "Predictions":predictions, "Original":y_test}).head(20))
     
     #st.subheader("Performance")
     #bar chart for accuracy precision recall
