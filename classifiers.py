@@ -20,12 +20,12 @@ def app():
     st.subheader("Features(aka Words) and their Tf-Idf score:")
     st.write(pd.DataFrame(tf_idf.toarray(),columns=tf_idf_vec.get_feature_names()))
 
-    #nb_clf = MultinomialNB()
-    #nb_clf.fit(tf_idf, y_train)
+    nb_clf = MultinomialNB()
+    nb_clf.fit(tf_idf, y_train)
 
-    #st.subheader("Naive Bayes Predictions vs Original Gender")
-    #predictions = nb_clf.predict(tf_idf_vec.transform(X_test))
-    #st.write(pd.DataFrame({"Predictions":predictions, "Original":y_test}))
+    st.subheader("Naive Bayes Predictions vs Original Gender")
+    predictions = nb_clf.predict(tf_idf_vec.transform(X_test))
+    st.write(pd.DataFrame({"Predictions":predictions, "Original":y_test}))
     
-    #st.subheader("Performance")
+    st.subheader("Performance")
     #bar chart for accuracy precision recall
