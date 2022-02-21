@@ -8,6 +8,7 @@ from sklearn.ensemble import RandomForestClassifier
 import plotly.graph_objects as go
 
 def app():
+    st.header("Predicting Gender Using Self-Summary Essay")
     df = pd.read_csv("nb.csv")
     df = df.dropna()
     df.drop(columns=df.columns[0], axis=1, inplace=True)
@@ -57,7 +58,7 @@ def app():
     st.write("accuracy:", rf_accuracy)
     st.write("precision:", rf_precision)
     st.write("F1-Score:", rf_f1)
-    st.write("Note that we are only using n_estimators=20 that may affect the performance of Random Forest. We can increase the performance by increasing the number of trees but the time to train the model will be unreasonable for a web app.")
+    st.write("Note that we are only using n_estimators=20 and that may affect the performance of Random Forest. We can increase the performance by increasing the number of trees but the time to train the model will be unreasonable for a web app. Tests conducted showed tha even for 1000 n_estimators, we get a maximum accuracy of 0.66, which is comaparable to Multinomial Naive Bayes")
 
 
 
@@ -71,7 +72,7 @@ def app():
     st.plotly_chart(fig)
 
     st.subheader("Test Our Model")
-    st.write("Enter your Self-Summary and check if the model correctly predicts your Gender")
+    st.write("Enter your Self-Summary and check if the model correctly predicts your Gender", "I'm a Man...")
     text = st.text_input("Your Self-Summary")
     tf_idf_text  = tf_idf_vec.transform([text])
     nb_prediction = nb_clf.predict(tf_idf_text)
