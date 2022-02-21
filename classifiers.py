@@ -41,6 +41,12 @@ def app():
     st.write("accuracy:", nb_accuracy)
     st.write("precision:", nb_precision)
     st.write("F1-Score:", nb_f1)
+
+    layout = {
+        "title": "Confusion Matrix", 
+        "xaxis": {"title": "Predicted value"}, 
+        "yaxis": {"title": "Real value"}
+    }
     conf_mat = confusion_matrix(y_test, predictions, labels=["m", "f"])
     fig = go.Figure(data=go.Heatmap(
         z=conf_mat,
@@ -69,11 +75,7 @@ def app():
     st.write("precision:", rf_precision)
     st.write("F1-Score:", rf_f1)
 
-    layout = {
-        "title": "Confusion Matrix", 
-        "xaxis": {"title": "Predicted value"}, 
-        "yaxis": {"title": "Real value"}
-    }
+    
     conf_mat = confusion_matrix(y_test, predictions, labels=["m", "f"])
     fig = go.Figure(data=go.Heatmap(
             z=conf_mat,
