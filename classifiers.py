@@ -3,7 +3,7 @@ import streamlit as st
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import accuracy_score, precision_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, f1_score, confusion_matrix
 from sklearn.ensemble import RandomForestClassifier
 import plotly.graph_objects as go
 
@@ -29,6 +29,7 @@ def app():
 
     st.subheader("A few Naive Bayes Predictions vs Original Gender")
     predictions = nb_clf.predict(tf_idf_vec.transform(X_test))
+
     st.write(pd.DataFrame({"Essay": X_test, "Predictions":predictions, "Original":y_test}).head(20))
 
    
@@ -40,7 +41,9 @@ def app():
     st.write("accuracy:", nb_accuracy)
     st.write("precision:", nb_precision)
     st.write("F1-Score:", nb_f1)
-
+    conf_mat = confusion_matrix(y_test, predictions, labels=["m", "f"])
+    fig = go.Figure(data=go.Heatmap(z=conf_mat))
+    st.plotly_chart(fig)
 
 
     st.subheader("A Few Random Forest Predictions vs Original Gender")
@@ -53,6 +56,10 @@ def app():
     rf_accuracy = accuracy_score(y_test, predictions)
     rf_precision = precision_score(y_test, predictions, average='weighted')
     rf_f1 = f1_score(y_test, predictions, average='weighted')
+    conf_mat = confusion_matrix(y_test, predictions, labels=["m", "f"])
+    fig = go.Figure(data=go.Heatmap(z=conf_mat))
+    st.plotly_chart(fig)
+
     
     st.subheader("Random Forest Performance")
     st.write("accuracy:", rf_accuracy)
