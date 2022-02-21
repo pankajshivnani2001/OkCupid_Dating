@@ -67,4 +67,4 @@ def app():
     ])
     # Change the bar mode
     fig.update_layout(barmode='group')
-    st.plotlt_chart(fig)
+    st.plotly_chart(fig)
