@@ -72,7 +72,7 @@ def app():
     st.plotly_chart(fig)
 
     st.subheader("Test Our Model")
-    st.write("Enter your Self-Summary and check if the model correctly predicts your Gender", "I'm a Man...")
+    st.write("Enter your Self-Summary and check if the model correctly predicts your Gender")
     text = st.text_input("Your Self-Summary")
     tf_idf_text  = tf_idf_vec.transform([text])
     nb_prediction = nb_clf.predict(tf_idf_text)
