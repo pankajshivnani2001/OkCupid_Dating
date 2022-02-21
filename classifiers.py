@@ -10,6 +10,7 @@ import plotly.graph_objects as go
 def app():
     df = pd.read_csv("nb.csv")
     df = df.dropna()
+    df.drop(columns=df.columns[0], axis=1, inplace=True)
     st.write(df.head(10))
     st.write("The above dataset will be split in 70-30 train test data.")
     
@@ -41,12 +42,12 @@ def app():
 
 
 
+    st.subheader("A Few Random Forest Predictions vs Original Gender")
     rf_clf = RandomForestClassifier(n_estimators = 20)
     rf_clf.fit(tf_idf, y_train)
     predictions = rf_clf.predict(tf_idf_vec.transform(X_test))
     st.write(pd.DataFrame({"Essay": X_test, "Predictions":predictions, "Original":y_test}).head(20))
-    
-    st.subheader("Decision Tree Performance")
+
 
     rf_accuracy = accuracy_score(y_test, predictions)
     rf_precision = precision_score(y_test, predictions, average='weighted')
@@ -68,3 +69,14 @@ def app():
     # Change the bar mode
     fig.update_layout(barmode='group')
     st.plotly_chart(fig)
+
+    st.subheader("Test Our Model")
+    st.write("Enter your Self-Summary and check if the model correctly predicts your Gender")
+    text = st.text_input("Your Self-Summary")
+    tf_idf_text  = tf_idf_vec.transform([text])
+    nb_prediction = nb_clf.predict(tf_idf_text)
+    rf_prediction = rf_clf.predict(tf_idf_text)
+    nb_prediction = "Male" if nb_prediction[0] == "m" else "Female"
+    rf_prediction = "Male" if rf_prediction[0] == "m" else "Female"
+    st.write("Prediction By Naive Bayes:", nb_prediction);
+    st.write("Prediction By Random Forest:", rf_prediction);
