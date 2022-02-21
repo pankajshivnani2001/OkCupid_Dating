@@ -60,9 +60,7 @@ def app():
     rf_accuracy = accuracy_score(y_test, predictions)
     rf_precision = precision_score(y_test, predictions, average='weighted')
     rf_f1 = f1_score(y_test, predictions, average='weighted')
-    conf_mat = confusion_matrix(y_test, predictions, labels=["m", "f"])
-    fig = go.Figure(data=go.Heatmap(z=conf_mat))
-    st.plotly_chart(fig)
+    
 
     
     st.subheader("Random Forest Performance")
