@@ -62,8 +62,8 @@ def app():
 
     st.subheader("Comparing Performance")
     fig = go.Figure(data=[
-    go.Bar(name='Naive Bayes', x=["Accuracy, Precision", "F1-Score"], y=[nb_accuracy, nb_precision, nb_f1]),
-    go.Bar(name='Random Forest', x=["Accuracy, Precision", "F1-Score"], y=[rf_accuracy, rf_precision, rf_f1])
+    go.Bar(name='Naive Bayes', x=["Accuracy", "Precision", "F1-Score"], y=[nb_accuracy, nb_precision, nb_f1]),
+    go.Bar(name='Random Forest', x=["Accuracy", "Precision", "F1-Score"], y=[rf_accuracy, rf_precision, rf_f1])
     ])
     # Change the bar mode
     fig.update_layout(barmode='group')
