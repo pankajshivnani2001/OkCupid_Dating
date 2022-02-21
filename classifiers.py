@@ -46,7 +46,8 @@ def app():
         z=conf_mat,
         x=['Male', 'Female'],
         y=['Male', 'Female'],
-        hoverongaps = False))
+        hoverongaps = False),
+        layout = layout)
     st.plotly_chart(fig)
 
 
@@ -67,12 +68,19 @@ def app():
     st.write("accuracy:", rf_accuracy)
     st.write("precision:", rf_precision)
     st.write("F1-Score:", rf_f1)
+
+    layout = {
+        "title": "Confusion Matrix", 
+        "xaxis": {"title": "Predicted value"}, 
+        "yaxis": {"title": "Real value"}
+    }
     conf_mat = confusion_matrix(y_test, predictions, labels=["m", "f"])
     fig = go.Figure(data=go.Heatmap(
             z=conf_mat,
             x=['Male', 'Female'],
             y=['Male', 'Female'],
-            hoverongaps = False))
+            hoverongaps = False),
+            layout = layout)
     st.plotly_chart(fig)
     st.write("Note that we are only using n_estimators=20 and that may affect the performance of Random Forest. We can increase the performance by increasing the number of trees but the time to train the model will be unreasonable for a web app. Tests conducted showed tha even for 1000 n_estimators, we get a maximum accuracy of 0.66, which is comaparable to Multinomial Naive Bayes")
 
